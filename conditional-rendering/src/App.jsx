@@ -3,7 +3,7 @@ import LoginBtn from './components/LoginBtn'
 import LogoutBtn from './components/LogoutBtn'
 
 const App = () => {
-  const[isLoggedIn, setLoggedIn]=useState(false);
+  const[isLoggedIn, setLoggedIn]=useState(true);
   if(!isLoggedIn){
     return(
       <LoginBtn/>

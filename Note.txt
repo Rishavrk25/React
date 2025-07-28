@@ -1,2 +1,6 @@
 npm create vite@latest
 npm install react-router-dom
+npm install react-hook-form
+npm install @reduxjs/toolkit
+npm install react-redux
+npm i react-router-dom react-toastify
