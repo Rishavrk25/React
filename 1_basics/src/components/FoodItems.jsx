@@ -1,8 +1,10 @@
 import React from "react";
-import Items from "./Item";
+import Item from "./Item";
 import { useState } from "react";
 
 const FoodItems = ({ items }) => {
+  
+  let [activeItems,setActiveItems]=useState([]);
 
   const handleBuyButton = (item,e)=>{
     console.log("buy button clicked");
@@ -10,13 +12,12 @@ const FoodItems = ({ items }) => {
     setActiveItems(newItems);
   }
 
-  let [activeItems,setActiveItems]=useState([]);
 
   return (
     <div>
       <ul>
         {items.map((item) => (
-          <Items key={item} foodItem={item} bought={activeItems.includes(item)}
+          <Item key={item} foodItem={item} bought={activeItems.includes(item)}
           handleBuyButton={(e) => handleBuyButton(item,e)}
           />
         ))}

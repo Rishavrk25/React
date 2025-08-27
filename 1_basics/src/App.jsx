@@ -29,6 +29,7 @@ function App() {
         <h1 className="text-4xl font-bold mb-4">Healthy Food</h1>
         <FoodInput handleKeyDown={handleKeyDown}></FoodInput>
         {/* <p>{textToShow}</p> */}
+
         <ErrorMessage items={foodItems} />
         <FoodItems items={foodItems} />
       </Container>
