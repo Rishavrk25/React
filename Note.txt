@@ -4,3 +4,4 @@ npm install react-hook-form
 npm install @reduxjs/toolkit
 npm install react-redux
 npm i react-router-dom react-toastify
+npm install react-icons --save
