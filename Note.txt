@@ -5,3 +5,19 @@ npm install @reduxjs/toolkit
 npm install react-redux
 npm i react-router-dom react-toastify
 npm install react-icons --save
+
+// tailwindcss
+npm install tailwindcss @tailwindcss/cli
+src/input.css --> @import "tailwindcss";
+npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch
+<link href="./src/output.css" rel="stylesheet">
+
+-->CDN
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+
+// Flowbite cdn
+
+<link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+
+<script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
