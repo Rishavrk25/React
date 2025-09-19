@@ -42,7 +42,7 @@ const AddTodo = () => {
       </div>
       <div>
         <button 
-          className="bg-green-400 text-white p-2 rounded-xl w-20 h-10 flex justify-center items-center"
+          className="bg-green-400 text-white p-2 rounded-xl sm:w-20 sm:h-10 flex justify-center items-center"
           onClick={() => {
             handleInput(todoTaskEle.current.value, todoDateEle.current.value);
             todoTaskEle.current.value = "";

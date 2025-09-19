@@ -187,26 +187,23 @@
   .h-10 {
     height: calc(var(--spacing) * 10);
   }
-  .h-11 {
-    height: calc(var(--spacing) * 11);
-  }
-  .h-12 {
-    height: calc(var(--spacing) * 12);
-  }
-  .h-15 {
-    height: calc(var(--spacing) * 15);
-  }
-  .w-10 {
-    width: calc(var(--spacing) * 10);
-  }
   .w-20 {
     width: calc(var(--spacing) * 20);
   }
-  .w-100 {
-    width: calc(var(--spacing) * 100);
+  .w-\[20\%\] {
+    width: 20%;
+  }
+  .w-\[20rem\] {
+    width: 20rem;
   }
   .w-\[22rem\] {
     width: 22rem;
+  }
+  .w-\[23rem\] {
+    width: 23rem;
+  }
+  .w-\[25rem\] {
+    width: 25rem;
   }
   .w-\[100\%\] {
     width: 100%;
@@ -217,6 +214,9 @@
   .w-screen {
     width: 100vw;
   }
+  .min-w-\[22rem\] {
+    min-width: 22rem;
+  }
   .border-collapse {
     border-collapse: collapse;
   }
@@ -226,9 +226,6 @@
   .grid-cols-\[1fr_1fr_0\.5fr\] {
     grid-template-columns: 1fr 1fr 0.5fr;
   }
-  .grid-rows-1 {
-    grid-template-rows: repeat(1, minmax(0, 1fr));
-  }
   .grid-rows-3 {
     grid-template-rows: repeat(3, minmax(0, 1fr));
   }
@@ -237,6 +234,9 @@
   }
   .justify-center {
     justify-content: center;
+  }
+  .gap-2 {
+    gap: calc(var(--spacing) * 2);
   }
   .gap-4 {
     gap: calc(var(--spacing) * 4);
@@ -282,6 +282,9 @@
   .p-4 {
     padding: calc(var(--spacing) * 4);
   }
+  .p-9 {
+    padding: calc(var(--spacing) * 9);
+  }
   .text-center {
     text-align: center;
   }
@@ -310,6 +313,31 @@
   .outline-none {
     --tw-outline-style: none;
     outline-style: none;
+  }
+  .sm\:h-10 {
+    @media (width >= 40rem) {
+      height: calc(var(--spacing) * 10);
+    }
+  }
+  .sm\:w-20 {
+    @media (width >= 40rem) {
+      width: calc(var(--spacing) * 20);
+    }
+  }
+  .sm\:w-\[40rem\] {
+    @media (width >= 40rem) {
+      width: 40rem;
+    }
+  }
+  .sm\:gap-4 {
+    @media (width >= 40rem) {
+      gap: calc(var(--spacing) * 4);
+    }
+  }
+  .sm\:p-4 {
+    @media (width >= 40rem) {
+      padding: calc(var(--spacing) * 4);
+    }
   }
   .md\:w-\[40rem\] {
     @media (width >= 48rem) {

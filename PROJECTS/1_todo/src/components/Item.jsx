@@ -8,7 +8,7 @@ const Item = ( {todoName , todoDate} ) => {
       <div>{todoName}</div>
       <div>{todoDate}</div>
       <div >
-        <button className="bg-red-400 text-white p-2 rounded-xl w-20 h-10 flex justify-center items-center" onClick={() => handleDelete(todoName,todoDate)}><MdDelete /></button>
+        <button className="bg-red-400 text-white p-2 rounded-xl sm:w-20 sm:h-10 flex justify-center items-center" onClick={() => handleDelete(todoName,todoDate)}><MdDelete /></button>
       </div>
     </>
   );
