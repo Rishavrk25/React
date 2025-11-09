@@ -1,23 +1,21 @@
-import { createContext, useReducer } from "react";
+import { createContext, useEffect, useReducer, useState } from "react";
 
 export const MyContext = createContext({
   postList: [],
   addPost: () => {},
-  addInitialPosts: () => {},
   deletePost: () => {},
+  loading: false,
 });
 
 const postListReducer = (currPostList, action) => {
-  let newPostList=currPostList;
+  let newPostList = currPostList;
   if (action.type === "DELETE_POST") {
     newPostList = currPostList.filter(
       (post) => post.id !== action.payload.postId
     );
-  }
-  else if (action.type === "ADD_POST") {
+  } else if (action.type === "ADD_POST") {
     newPostList = [action.payload, ...currPostList];
-  }
-  else if (action.type === "ADD_INITIAL_POSTS") {
+  } else if (action.type === "ADD_INITIAL_POSTS") {
     newPostList = action.payload.posts;
   }
   return newPostList;
@@ -25,19 +23,41 @@ const postListReducer = (currPostList, action) => {
 
 const MyProvider = ({ children }) => {
   const [postList, dispatchPostList] = useReducer(postListReducer, []);
+  const [loading, setLoading] = useState(false);
 
-  const addPost = (userId, postTitle, postBody, reactions, tags) => {
-    console.log(userId, postTitle, postBody, reactions, tags);
+   // Fetch posts with useEffect
+  useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+    setLoading(true);
+    if (postList.length === 0) {
+      fetch("https://dummyjson.com/posts", { signal: signal })
+        .then((res) => res.json())
+        .then((data) => {
+          addInitialPosts(data.posts);
+          setLoading(false);
+        })
+        .catch((err) => {
+          if (err.name === "AbortError") {
+            console.log("Fetch aborted");
+          } else {
+            console.error("Error fetching posts:", err);
+            setLoading(false);
+          }
+        });
+    } else {
+      setLoading(false);
+    }
+    return () => {
+      controller.abort(); // Cleanup to abort fetch on unmount
+    };
+  }, []);
+
+  const addPost = (post) => {
+    console.log("Adding post:", post);
     dispatchPostList({
       type: "ADD_POST",
-      payload: {
-        id: Date.now().toString(),
-        userId: userId,
-        title: postTitle,
-        body: postBody,
-        reactions: reactions,
-        tags: tags,
-      },
+      payload: post,
     });
   };
 
@@ -59,8 +79,12 @@ const MyProvider = ({ children }) => {
     });
   };
 
+  
+
   return (
-    <MyContext.Provider value={{ postList, addPost,addInitialPosts, deletePost }}>
+    <MyContext.Provider
+      value={{ postList, addPost, deletePost,loading}}
+    >
       {children}
     </MyContext.Provider>
   );

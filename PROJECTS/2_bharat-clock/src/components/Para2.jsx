@@ -1,23 +1,38 @@
 import React, { useState, useEffect } from "react";
 
-const Para2 = () => {
-  const [currentTime, setCurrentTime] = useState(new Date());
+const para2 = () => {
+  const [time, setTime] = useState(new Date());
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentTime(new Date());
+    const intervalId = setInterval(() => {
+      setTime(new Date());
     }, 1000);
 
-    return () => clearInterval(timer);
+    return () => {
+      clearInterval(intervalId);
+    };
   }, []);
 
+  // Formatting the date and time
+  const dateString = time.toLocaleDateString('en-IN', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+  const timeString = time.toLocaleTimeString('en-IN', {
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: true
+  });
+
   return (
-    <div className="p-4 rounded-lg">
-      <p className="text-5xl md:text-6xl font-extrabold font-mono text-emerald-400 tracking-wide drop-shadow-lg">
-        {currentTime.toLocaleDateString()} - {currentTime.toLocaleTimeString()}
-      </p>
+    <div className="mt-8 bg-black/20 p-6 rounded-lg border border-white/10">
+      <p className="text-2xl sm:text-5xl md:text-6xl text-white font-mono tracking-widest">{timeString}</p>
+      <p className="text-slate-400 sm:text-md mt-3">{dateString}</p>
     </div>
   );
 };
 
-export default Para2;
+export default para2;

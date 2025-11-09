@@ -2,8 +2,7 @@ import React, { useContext, useRef } from "react";
 import { MyContext } from "./MyContext";
 
 const CreatePost = () => {
-
-  const {addPost} = useContext(MyContext);
+  const { addPost } = useContext(MyContext);
 
   const userIdElement = useRef();
   const postTitleElement = useRef();
@@ -11,7 +10,7 @@ const CreatePost = () => {
   const reactionsElement = useRef();
   const tagsElement = useRef();
 
-  const handleSubmit = (event) =>{
+  const handleSubmit = (event) => {
     event.preventDefault();
     const userId = userIdElement.current.value;
     const postTitle = postTitleElement.current.value;
@@ -19,20 +18,35 @@ const CreatePost = () => {
     const reactions = reactionsElement.current.value;
     const tags = tagsElement.current.value.split(/[\s,]+/);
 
-    userIdElement.current.value="";
-    postTitleElement.current.value="";
-    postBodyElement.current.value="";
-    reactionsElement.current.value="";
-    tagsElement.current.value="";
+    userIdElement.current.value = "";
+    postTitleElement.current.value = "";
+    postBodyElement.current.value = "";
+    reactionsElement.current.value = "";
+    tagsElement.current.value = "";
 
-    addPost(userId,postTitle,postBody,reactions,tags);
+    fetch("https://dummyjson.com/posts/add", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        userId: userId,
+        title: postTitle,
+        body: postBody,
+        reactions: reactions,
+        tags: tags,
+      }),
+    })
+      .then((res) => res.json())
+      .then((post) => addPost(post));
 
-
-  }
+    
+  };
 
   return (
     <div className=" p-4 sm:px-20 sm:py-10 bg-gray-800">
-      <form className="sm:ml-64  bg-gray-200 p-5 rounded-2xl" onSubmit={handleSubmit}>
+      <form
+        className="sm:ml-64  bg-gray-200 p-5 rounded-2xl"
+        onSubmit={handleSubmit}
+      >
         <div className="mb-5">
           <label
             htmlFor="userId"

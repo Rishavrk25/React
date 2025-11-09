@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { MdDelete } from "react-icons/md";
 import { MyContext } from "./MyContext";
+
 const Post = ({ post }) => {
   const {deletePost} = useContext(MyContext);
   return (
@@ -38,7 +39,7 @@ const Post = ({ post }) => {
         ))}
       </div>
       <div className="p-4 mb-4 ml-3 rounded-lg bg-green-200 dark:text-green-950 text-sm font-medium">
-        This post has been reacted by {post.reactions.likes} people.
+        This post has been reacted by {post.reactions.likes || post.reactions} people.
       </div>
     </div>
   );

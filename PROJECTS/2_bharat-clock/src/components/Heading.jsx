@@ -2,7 +2,7 @@ import React from "react";
 
 const Heading = () => {
   return (
-    <h1 className="text-7xl font-extrabold bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent drop-shadow-xl">
+    <h1 className=" text-2xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-wider uppercase" style={{ textShadow: '0 4px 15px rgba(0,0,0,0.2)' }}>
       Bharat Clock
     </h1>
   );
