@@ -1,4 +1,4 @@
-import MyProvider from "./components/MyProvider";
+import MyProvider from "./components/MyContext";
 import UserProfile from "./components/UserProfile";
 
 function App() {

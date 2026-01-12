@@ -6,6 +6,7 @@ const App = () => {
 
   const handleClick = () => {
     inputRef.current.focus(); // directly access DOM node
+    inputRef.current.style.backgroundColor="yellow";
   };
 
   return (

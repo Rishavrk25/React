@@ -4,7 +4,7 @@ export default function MultiForm() {
   const [form, setForm] = useState({ name: "", email: "" });
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setForm( {...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
@@ -12,6 +12,18 @@ export default function MultiForm() {
     console.log(form);
   };
 
+  const validate = () => {
+    if (!form.name) {
+      alert("Name is required");
+      return false;
+    }
+    if (!form.email) {
+      alert("Email is required");
+      return false;
+    }
+    return true;
+  }
+  
   return (
     <form onSubmit={handleSubmit} className="p-4 space-y-2">
       <input
